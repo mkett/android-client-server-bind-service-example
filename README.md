@@ -63,3 +63,5 @@ Intent("RandomNumberService").also { intent ->
     bindService(intent, connection, BIND_AUTO_CREATE)
 }
 ```
+
+If you are interested on an example how custom dangerous permissions can be defined and requested on Android, then check out the branch [add-custom-permission](https://github.com/mkett/android-client-server-bind-service-example/tree/feature/add-custom-permission)
