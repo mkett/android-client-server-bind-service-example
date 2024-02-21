@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ServerProvidesService</string>
+    <string name="permission_description">call Random Number Service to receive numbers</string>
+    <string name="permission_label">Random Number Generator</string>
 </resources>

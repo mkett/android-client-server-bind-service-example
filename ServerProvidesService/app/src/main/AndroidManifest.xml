@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- create a custom permission -->
+    <permission
+        android:description="@string/permission_description"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:label="@string/permission_label"
+        android:name="com.example.permission.RANDOM_NUMBER_PERMISSION"
+        android:protectionLevel="dangerous"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,7 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServerProvidesService"
         tools:targetApi="31">
+
+        <!-- add the necessary custom RANDOM_NUMBER_PERMISSION permission to the service -->
         <service
+            android:permission="com.example.permission.RANDOM_NUMBER_PERMISSION"
             android:name=".RandomNumberService"
             android:enabled="true"
             android:exported="true">
