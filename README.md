@@ -1,6 +1,6 @@
-## Example for bind service with IPC (Inter-Process Communication)
+## Example for bound service with IPC (Inter-Process Communication)
 
-This example will show how to use an Android bind service between two applications. Every application is running on a separate process. To communicatate between two 
+This example will show how to use an Android bound service between two applications. Every application is running on a separate process. To communicatate between two 
 processes we use IPC (Inter-Process Communication) on Android.
 
 ### Server and client apllication
@@ -15,7 +15,7 @@ android {
 }
 ```
 
-If you activated AIDL, created (File->New->AIDL) and modified the [AIDL file](https://github.com/mkett/android-client-server-bind-service-example/blob/main/ServerProvidesService/app/src/main/aidl/com/example/server/provides/service/IAidlRandomNumber.aidl), run "Rebuild Project". It will create all nessarry java files with Stub and Proxy. 
+If you activated AIDL, created (File->New->AIDL) and modified the [AIDL file](https://github.com/mkett/android-client-server-bind-service-example/blob/main/ServerProvidesService/app/src/main/aidl/com/example/server/provides/service/IAidlRandomNumber.aidl), run "Rebuild Project". It will create all necessary java files with Stub and Proxy. 
 This AIDL Interface must also be added later on client side. Take care you copy or create the same interface with equal package name.
 
 ```
@@ -26,7 +26,7 @@ interface IAidlRandomNumber {
 }
 ```
 
-### Only server apllication
+### Only server application
 
 [Create your service](https://github.com/mkett/android-client-server-bind-service-example/blob/main/ServerProvidesService/app/src/main/java/com/example/server/provides/service/RandomNumberService.kt) (File->New->Service) on server application, provide your AIDL Stub in *onBinder* function as IBinder and make your service visible for other applications (**exported=„true“**) on [manifext.xml](https://github.com/mkett/android-client-server-bind-service-example/blob/main/ServerProvidesService/app/src/main/AndroidManifest.xml):
 
@@ -44,9 +44,9 @@ interface IAidlRandomNumber {
 </application>
 ```
 
-### Only client apllication
+### Only client application
 
-To use the service on clinet side, you need to define your query on [manifest.xml](https://github.com/mkett/android-client-server-bind-service-example/blob/main/ClientBindsToService/app/src/main/AndroidManifest.xml)
+To use the service on client side, you need to define your query on [manifest.xml](https://github.com/mkett/android-client-server-bind-service-example/blob/main/ClientBindsToService/app/src/main/AndroidManifest.xml)
 
 ```
 <queries>
@@ -55,11 +55,11 @@ To use the service on clinet side, you need to define your query on [manifest.xm
 ```
 
 [Bind to the service](https://github.com/mkett/android-client-server-bind-service-example/blob/main/ClientBindsToService/app/src/main/java/com/example/client/service/MainActivity.kt) on your client application and receive data. Take care your service name is equal with the intent filter name defined in manifext.xml on server application
-and your package is equal with the package name in AIDL Interface file.
+and your package is equal with the package name of your service file.
 
 ```
 Intent("RandomNumberService").also { intent ->
-    intent.setPackage(„com.example.server.provides.service“)
+    intent.setPackage(„PACKAGE_NAME_OF_SERVER_SERVICE“)
     bindService(intent, connection, BIND_AUTO_CREATE)
 }
 ```
